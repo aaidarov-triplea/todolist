@@ -1,10 +1,18 @@
+import styled from 'styled-components'
 import { TodoItem } from '../todo-item'
+
+const StyledUl = styled.ul`
+padding-left: 0;
+`
+const StyledH2 = styled.h2`
+font-size: 30px;
+`
 
 export const TodoList = ({ className, title, items, onToggleTodo }) => {
   return (
     <div className={className}>
-      <h2>{title}</h2>
-      <ul>
+      <StyledH2>{title}</StyledH2>
+      <StyledUl>
         {
           items.map(todo => (
             <TodoItem 
@@ -14,7 +22,7 @@ export const TodoList = ({ className, title, items, onToggleTodo }) => {
             />
           ))
         }
-      </ul>
+      </StyledUl>
     </div>
   )
 }

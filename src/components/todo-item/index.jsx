@@ -2,19 +2,19 @@ import styled from "styled-components"
 
 const TodoContainer = styled.li`
   list-style: none;
-  background-color: #ccc;
+  margin-bottom: 6px;
   
   &:hover {
     color: blue;
   }
   & input {
-    margin-right: 20px;
+    margin-right: 15px;
+    cursor: pointer;
   }
   `
 
   const TodoText = styled.span`
     text-decoration: ${(props) => props.isDone ? 'line-through' : 'none'};
-    color: ${(props) => props.isDone ? 'green' : 'black'};
   `
 
   
