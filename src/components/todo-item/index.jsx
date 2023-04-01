@@ -1,4 +1,6 @@
+import { useDispatch } from "react-redux"
 import styled from "styled-components"
+import { todoActions } from "../../store/todoSlice"
 
 const TodoContainer = styled.li`
   list-style: none;
@@ -19,9 +21,10 @@ const TodoContainer = styled.li`
 
   
 
-export const TodoItem = ({ id, text, isDone, onToggleTodo }) => {
+export const TodoItem = ({ id, text, isDone }) => {
+  const dispatch = useDispatch()
   const handleToggleTodo = () => {
-    onToggleTodo?.(id)
+    dispatch(todoActions.toggleTodo(id))
   }
 
   return (

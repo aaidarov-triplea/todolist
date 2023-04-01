@@ -1,8 +1,9 @@
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { TodoList } from './components/todo-list'
 import { useState } from 'react'
-import { startTodolist } from './data'
-import { useTodoList } from './hooks/useTodoList'
+import { useSelector } from 'react-redux'
+
+
 
 const Body = createGlobalStyle`
 body {
@@ -55,7 +56,7 @@ const StyledComponent = styled.div`
 
 function App() {
   const [theme, setTheme] = useState(themes.light)
-  const { todos, toggleTodo } = useTodoList(startTodolist)
+  const todos = useSelector(state => state.todo.items)
 
   const handleThemeChange = (e) => {
     const themeName = e.target.value;
@@ -99,18 +100,15 @@ const getComplateTodos = () => {
       <StyledTodoList
         title="Overdue"
         items={getOverdueTodos()}
-        onToggleTodo={toggleTodo}
       />
       <StyledTodoList
         title="Actual"
         items={getActualTodos()}
-        onToggleTodo={toggleTodo}
       />
 
       <StyledTodoList
         title="Complate"
         items={getComplateTodos()}
-        onToggleTodo={toggleTodo}
       />
     </div>
     

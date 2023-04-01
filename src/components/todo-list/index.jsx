@@ -8,7 +8,7 @@ const StyledH2 = styled.h2`
 font-size: 30px;
 `
 
-export const TodoList = ({ className, title, items, onToggleTodo }) => {
+export const TodoList = ({ className, title, items }) => {
   return (
     <div className={className}>
       <StyledH2>{title}</StyledH2>
@@ -18,7 +18,6 @@ export const TodoList = ({ className, title, items, onToggleTodo }) => {
             <TodoItem 
               key={todo.id}
               {...todo}
-              onToggleTodo={onToggleTodo}
             />
           ))
         }
