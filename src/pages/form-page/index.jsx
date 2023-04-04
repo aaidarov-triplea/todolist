@@ -1,6 +1,8 @@
 import styled from "styled-components"
-import { Link } from "react-router-dom"
-import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { todoFormActions } from '../../store/todoFormSlice'
+import { todoActions } from "../../store/todoSlice"
 
 const Form = styled.form`
     border: 1px solid #000;
@@ -20,14 +22,42 @@ const Form = styled.form`
 `
 
 function FormPage() {
-    const [text, setText] = useState('')
+    const {text, deadline} = useSelector(state => state.todoForm.form)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const handleChange = (e) => {
+        dispatch(todoFormActions.changeField({
+            name: e.target.name,
+            value: e.target.value
+        }))
+    }
+
+    const handleSave = (e) => {
+        e.preventDefault()
+        dispatch(todoActions.addTodo({ text, deadline }))
+        navigate('/')
+    }
+
     return(
         <>
-        <Link to="/">Home</Link>
+        <Link to="/">Go back to todoList</Link>
         <Form>
-            <textarea></textarea>
-            <input type="date" />
-            <button>Save Data</button>
+            <textarea
+            name="text"
+            value={text}
+            onChange={handleChange}
+            >
+
+            </textarea>
+            <input
+            name="deadline" 
+            type="date" 
+            value={deadline}
+            onChange={handleChange}
+            />
+
+            <button type="submit" onClick={handleSave}>Save todo</button>
         </Form>
         </>
     )
