@@ -11,7 +11,7 @@ export const todoFormSlice = createSlice({
   reducers: {
     changeField: (state, actions) => {
       state.form = {
-        ...state,
+        ...state.form,
         [actions.payload.name]: actions.payload.value,
       }
     },
