@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+
 export const todoFormSlice = createSlice({
   name: 'todoForm',
   initialState: {
@@ -15,7 +16,14 @@ export const todoFormSlice = createSlice({
         [actions.payload.name]: actions.payload.value,
       }
     },
+    reloadForm:(state) => {
+        state.form = {
+          text: '',
+          deadline: ''
+        }
+    }
   }
+  
 })
 
 export const todoFormActions = todoFormSlice.actions

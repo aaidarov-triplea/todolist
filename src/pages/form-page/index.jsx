@@ -36,6 +36,7 @@ function FormPage() {
     const handleSave = (e) => {
         e.preventDefault()
         dispatch(todoActions.addTodo({ text, deadline }))
+        dispatch(todoFormActions.reloadForm())
         navigate('/')
     }
 
